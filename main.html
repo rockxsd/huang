@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Effects Collection</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      /* background: white; */
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    #container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #effect-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .controls {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .active {
+      background: rgba(255, 255, 255, 0.4);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <iframe id="effect-frame" src="A1/index.html"></iframe>
+    <div class="controls">
+      <button onclick="play3()" class="active">准备好了</button>
+    </div>
+  </div>
+
+  <script>
+    let currentEffect = 1;
+    let autoPlayInterval = null;
+    const totalEffects = 4;
+
+    function switchEffect(num) {
+      currentEffect = num;
+      document.getElementById('effect-frame').src = `A${num}/index.html`;
+    }
+
+    function play3() {
+      // 隐藏按钮
+      document.querySelector('.controls').style.display = 'none';
+      // 播放音乐
+      const audio = document.createElement('audio');
+      audio.src = 'music.mp3';
+      audio.play();
+      switchEffect(3);
+      setTimeout(() => {
+        switchEffect(2);
+      }, 90000);
+    }
+
+  </script>
+</body>
+
+</html>
